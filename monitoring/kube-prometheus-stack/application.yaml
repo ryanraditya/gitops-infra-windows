@@ -1,17 +1,15 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: kube-prometheus
+  name: kube-prometheus-stack
   namespace: argocd
 spec:
   project: default
   source:
-    repoURL: https://prometheus-community.github.io/helm-charts
-    chart: kube-prometheus-stack
-    targetRevision: 65.1.0
+    repoURL: https://github.com/ryanraditya/gitops-infra-windows
+    path: monitoring/kube-prometheus-stack
+    targetRevision: HEAD
     helm:
-      releaseName: kube-prometheus
-      skipCrds: true
       valueFiles:
         - values.yaml
   destination:
